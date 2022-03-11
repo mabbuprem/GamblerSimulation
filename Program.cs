@@ -12,14 +12,29 @@ namespace GamblerSimulation
 
         }
 
-        public void OlayGame()
+        public static void PlayGame()
         {
-            Gamblers gambler1 = new Gamblers(100);
-            int Gambler_Stake = gambler1.Gamlers_stake;
-            for (int day = 0; Gambler_Stake >= 0; day++)
+
+            const int StartingStake = 100;
+            const int BetPerGame = 1;
+
+            Gamblers gambler1 = new Gamblers(StartingStake);
+            int Gamblers_Stake = gambler1.Gamblers_stake;
+
+            Random random = new Random();
+            int WinOrLoose = random.Next(0, 2);
+            switch (WinOrLoose)
             {
-                Gamblers_Stake--;
+                case 0:
+                    Gamblers_Stake = Gamblers_Stake - BetPerGame;
+                    break;
+                case 1:
+                    Gamblers_Stake = Gamblers_Stake + BetPerGame;
+                    break;
             }
+
+            Console.WriteLine(Gamblers_Stake);
+
         }
     }
 }
